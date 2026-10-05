@@ -13,7 +13,7 @@
 <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root {
     --ink: #0B0A0A;
@@ -38,15 +38,6 @@
     -webkit-font-smoothing: antialiased;
     overflow-x: hidden;
   }
-  /* film grain */
-  body::after {
-    content: "";
-    position: fixed; inset: 0;
-    pointer-events: none;
-    z-index: 100;
-    opacity: .06;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
-  }
   a { color: inherit; }
   img { max-width: 100%; display: block; }
   ::selection { background: var(--red); color: var(--paper); }
@@ -65,13 +56,12 @@
     background: var(--red);
   }
   h2 {
-    font-family: var(--display);
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: clamp(2.8rem, 7vw, 5.5rem);
-    line-height: .95;
-    letter-spacing: .01em;
-    margin-top: 14px;
+    font-family: var(--sans);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 3.6vw, 2.6rem);
+    line-height: 1.15;
+    letter-spacing: -.02em;
+    margin-top: 10px;
   }
   .btn {
     display: inline-flex; align-items: center; gap: 10px;
@@ -108,10 +98,9 @@
   .brand {
     display: inline-flex; align-items: center; gap: 12px;
     text-decoration: none;
-    font-family: var(--display);
-    font-size: 1.25rem;
-    letter-spacing: .06em;
-    text-transform: uppercase;
+    font-weight: 700;
+    font-size: 1rem;
+    letter-spacing: -.01em;
   }
   .brand img { width: 30px; height: 30px; transition: transform .6s cubic-bezier(.3,1.6,.5,1); }
   .brand:hover img { transform: rotate(360deg); }
@@ -139,7 +128,7 @@
   /* ---------- hero ---------- */
   .hero {
     position: relative;
-    min-height: 100vh; min-height: 100svh;
+    min-height: 88vh; min-height: 88svh;
     display: grid;
     grid-template-columns: 1.05fr .95fr;
     align-items: stretch;
@@ -151,21 +140,15 @@
     padding: 120px 0 80px max(28px, calc((100vw - 1200px) / 2 + 28px));
   }
   .hero h1 {
-    font-family: var(--display);
-    font-weight: 400;
-    text-transform: uppercase;
-    font-size: clamp(4.2rem, 11vw, 10.5rem);
-    line-height: .86;
-    letter-spacing: -.005em;
-    margin: 22px 0 28px;
+    font-family: var(--sans);
+    font-weight: 700;
+    font-size: clamp(2.8rem, 6vw, 4.6rem);
+    line-height: 1.02;
+    letter-spacing: -.035em;
+    margin: 18px 0 18px;
   }
-  .hero h1 .l2 { display: block; color: transparent; -webkit-text-stroke: 1.5px var(--paper); }
-  .hero h1 .dot { color: var(--red); -webkit-text-stroke: 0; }
   .hero-lede {
-    font-family: var(--serif);
-    font-weight: 300;
-    font-style: italic;
-    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+    font-size: clamp(1.05rem, 1.5vw, 1.2rem);
     color: rgba(243,238,230,.78);
     max-width: 30ch;
     margin-bottom: 38px;
@@ -184,50 +167,10 @@
       linear-gradient(90deg, var(--ink) 0%, rgba(11,10,10,.6) 18%, rgba(11,10,10,0) 45%),
       linear-gradient(0deg, var(--ink) 0%, rgba(11,10,10,0) 25%);
   }
-  .hero-badge {
-    position: absolute; z-index: 3;
-    right: 6%; bottom: 10%;
-    width: 132px; height: 132px;
-  }
-  .hero-badge img.bug {
-    position: absolute; inset: 30px; width: 72px; height: 72px;
-  }
-  .hero-badge svg { position: absolute; inset: 0; animation: spin 22s linear infinite; }
-  .hero-badge text { fill: var(--paper); font: 600 10.5px var(--sans); letter-spacing: 3.2px; text-transform: uppercase; }
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .scroll-cue {
-    position: absolute; left: 50%; bottom: 26px; z-index: 3;
-    width: 1px; height: 54px; background: var(--line); overflow: hidden;
-  }
-  .scroll-cue::after {
-    content: ""; position: absolute; left: 0; top: -50%; width: 1px; height: 50%;
-    background: var(--red); animation: drip 2s ease-in-out infinite;
-  }
-  @keyframes drip { to { top: 100%; } }
 
-  /* ---------- marquee ---------- */
-  .marquee {
-    background: var(--red);
-    color: var(--ink);
-    overflow: hidden;
-    white-space: nowrap;
-    padding: 16px 0;
-    border-block: 1px solid var(--red-deep);
-  }
-  .marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
-  .marquee span {
-    font-family: var(--display);
-    font-size: 1.6rem;
-    text-transform: uppercase;
-    letter-spacing: .04em;
-    padding: 0 22px;
-    display: inline-flex; align-items: center; gap: 44px;
-  }
-  .marquee span::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); }
-  @keyframes marquee { to { transform: translateX(-50%); } }
 
-  section { padding: 130px 0; position: relative; }
-  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: 60px; }
+  section { padding: 100px 0; position: relative; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: 44px; }
   .head p { color: var(--muted); max-width: 40ch; }
 
   /* ---------- music ---------- */
@@ -256,7 +199,7 @@
   .shows { border-top: 1px solid var(--line); }
   .show {
     display: grid;
-    grid-template-columns: 140px 1fr auto;
+    grid-template-columns: 100px 1fr auto;
     align-items: center;
     gap: 30px;
     padding: 34px 0;
@@ -264,10 +207,10 @@
     transition: padding .25s ease;
   }
   .show:hover { padding-left: 14px; }
-  .show-date { font-family: var(--display); line-height: .9; }
-  .show-date .d { font-size: 4rem; display: block; }
-  .show-date .m { font-size: 1rem; letter-spacing: .2em; color: var(--red); }
-  .show h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.15; }
+  .show-date { line-height: 1; }
+  .show-date .d { font-size: 2.6rem; display: block; font-family: var(--sans); font-weight: 600; letter-spacing: -.03em; }
+  .show-date .m { font-family: var(--sans); font-size: .78rem; font-weight: 600; letter-spacing: .15em; color: var(--red); }
+  .show h3 { font-weight: 600; font-size: 1.25rem; line-height: 1.25; }
   .show p { color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 8px; }
   .tag {
     font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
@@ -282,7 +225,7 @@
     background: linear-gradient(120deg, rgba(226,19,31,.16), rgba(226,19,31,.02));
     border: 1px solid rgba(226,19,31,.35);
   }
-  .shows-note p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; }
+  .shows-note p { font-size: 1.05rem; }
 
   /* ---------- bio ---------- */
   .bio { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
@@ -292,42 +235,23 @@
     content: ""; position: absolute; inset: 18px -18px -18px 18px;
     border: 1px solid var(--red); border-radius: 18px; z-index: -1;
   }
-  .bio-photo .dots { position: absolute; top: -26px; right: -26px; width: 92px; }
-  .bio-text h2 { margin-bottom: 34px; }
+  .bio-text h2 { margin-bottom: 24px; }
   .bio-text p { color: rgba(243,238,230,.8); font-size: 1.06rem; margin-bottom: 20px; max-width: 58ch; }
-  .bio-text p:first-of-type {
-    font-family: var(--serif); font-weight: 300; font-size: clamp(1.35rem, 2.2vw, 1.7rem);
-    line-height: 1.4; color: var(--paper);
-  }
   .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
   .facts span { border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .82rem; color: rgba(243,238,230,.85); }
 
   /* ---------- booking ---------- */
   #kontakt { padding-bottom: 90px; }
   .booking {
-    position: relative; overflow: hidden;
-    background: var(--red);
-    color: var(--ink);
-    border-radius: 28px;
-    padding: clamp(48px, 8vw, 100px);
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 22px;
+    padding: clamp(36px, 6vw, 64px);
   }
-  .booking .eyebrow { color: var(--ink); }
-  .booking .eyebrow::before { background: var(--ink); }
-  .booking h2 { font-size: clamp(3rem, 8.5vw, 7rem); max-width: 10ch; }
-  .booking > p { font-size: 1.15rem; margin: 22px 0 40px; max-width: 42ch; font-weight: 500; }
-  .booking .btn-red { background: var(--ink); }
-  .booking .btn-red:hover { background: #000; }
-  .booking .btn-ghost { border-color: rgba(11,10,10,.4); color: var(--ink); }
-  .booking .btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
-  .contact-lines { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 8px 34px; font-weight: 600; }
-  .contact-lines a { text-decoration: none; border-bottom: 2px solid rgba(11,10,10,.25); }
-  .contact-lines a:hover { border-color: var(--ink); }
-  .booking-bug {
-    position: absolute; right: -90px; bottom: -90px;
-    width: 380px; opacity: .14;
-    filter: grayscale(1) brightness(0);
-    transform: rotate(-18deg);
-  }
+  .booking > p { color: var(--muted); font-size: 1.05rem; margin: 14px 0 32px; max-width: 46ch; }
+  .contact-lines { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px 30px; color: rgba(243,238,230,.85); }
+  .contact-lines a { text-decoration: none; border-bottom: 1px solid var(--line); }
+  .contact-lines a:hover { border-color: var(--red); }
   .actions { display: flex; flex-wrap: wrap; gap: 14px; position: relative; }
 
   /* ---------- footer ---------- */
@@ -355,9 +279,6 @@
     .hero-photo img { object-position: 62% 25%; opacity: .55; }
     .hero-photo::before { background: linear-gradient(0deg, var(--ink) 8%, rgba(11,10,10,.35) 60%, rgba(11,10,10,.7) 100%); }
     .hero-text { justify-content: flex-end; padding: 120px 28px 100px; }
-    .hero-badge { width: 104px; height: 104px; right: 22px; top: 96px; bottom: auto; }
-    .hero-badge img.bug { inset: 24px; width: 56px; height: 56px; }
-    .hero-badge svg { transform-origin: center; }
     .music-grid, .bio { grid-template-columns: 1fr; }
     .bio { gap: 60px; }
     .bio-photo { max-width: 460px; }
@@ -380,7 +301,7 @@
 
 <header id="hdr">
   <nav class="wrap nav">
-    <a href="#top" class="brand"><img src="images/logo.png" alt="">Biedronka</a>
+    <a href="#top" class="brand"><img src="images/logo.png" alt="">Stefan Biedronka</a>
     <ul class="nav-links">
       <li><a href="#muzyka" data-i18n="navMusic">Muzyka</a></li>
       <li><a href="#koncerty" data-i18n="navShows">Koncerty</a></li>
@@ -402,32 +323,17 @@
   <section class="hero" style="padding:0">
     <div class="hero-text">
       <div class="eyebrow" data-i18n="heroEyebrow">Muzyk · Producent · Improwizator</div>
-      <h1>Stefan<span class="l2">Biedronka<span class="dot">.</span></span></h1>
-      <p class="hero-lede" data-i18n="heroLede">Każdy koncert to osobne wydarzenie — dopasowane do miejsca, publiczności i chwili.</p>
+      <h1>Stefan Biedronka</h1>
+      <p class="hero-lede" data-i18n="heroLede">Muzyk z Trójmiasta. Koncerty, kolaboracje, sesje nagraniowe.</p>
       <div class="hero-actions">
         <a href="#muzyka" class="btn btn-red"><span data-i18n="heroBtnListen">Posłuchaj</span> <span class="arrow">→</span></a>
-        <a href="#koncerty" class="btn btn-ghost" data-i18n="heroBtnShows">Koncerty</a>
+        <a href="#koncerty" class="btn btn-ghost" data-i18n="heroBtnShows">Najbliższe koncerty</a>
       </div>
     </div>
     <div class="hero-photo">
       <img src="images/bio.webp" alt="Stefan Biedronka na scenie" data-i18n="bioPhotoAlt">
     </div>
-    <div class="hero-badge" aria-hidden="true">
-      <svg viewBox="0 0 132 132">
-        <defs><path id="circ" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
-        <text><textPath href="#circ">Trójmiasto · Live · Improv · Booking ·</textPath></text>
-      </svg>
-      <img class="bug" src="images/logo.png" alt="">
-    </div>
-    <div class="scroll-cue" aria-hidden="true"></div>
   </section>
-
-  <div class="marquee" aria-hidden="true">
-    <div class="marquee-track">
-      <span>Improwizacja</span><span>Koncerty</span><span>Kolaboracje</span><span>Trójmiasto</span><span>Sesje nagraniowe</span><span>Projekty specjalne</span>
-      <span>Improwizacja</span><span>Koncerty</span><span>Kolaboracje</span><span>Trójmiasto</span><span>Sesje nagraniowe</span><span>Projekty specjalne</span>
-    </div>
-  </div>
 
   <!-- MUZYKA -->
   <section id="muzyka">
@@ -493,7 +399,6 @@
     <div class="wrap bio">
       <div class="bio-photo reveal">
         <img src="images/bio.webp" alt="Stefan Biedronka na scenie" data-i18n="bioPhotoAlt" loading="lazy">
-        <img class="dots" src="images/logo.png" alt="">
       </div>
       <div class="bio-text reveal">
         <div class="eyebrow" data-i18n="aboutEyebrow">O mnie</div>
@@ -515,7 +420,6 @@
   <section id="kontakt">
     <div class="wrap">
       <div class="booking reveal">
-        <img class="booking-bug" src="images/logo.png" alt="">
         <div class="eyebrow" data-i18n="bookingEyebrow">Booking</div>
         <h2 data-i18n="bookingTitle">Zorganizujmy koncert</h2>
         <p data-i18n="bookingText">Rezerwacje koncertów, kolaboracje, sesje nagraniowe.</p>
@@ -560,8 +464,8 @@
     pl: {
       navMusic: "Muzyka", navShows: "Koncerty", navAbout: "O mnie", navBooking: "Booking", ctaBooking: "Booking",
       heroEyebrow: "Muzyk · Producent · Improwizator",
-      heroLede: "Każdy koncert to osobne wydarzenie — dopasowane do miejsca, publiczności i chwili.",
-      heroBtnShows: "Koncerty", heroBtnListen: "Posłuchaj",
+      heroLede: "Muzyk z Trójmiasta. Koncerty, kolaboracje, sesje nagraniowe.",
+      heroBtnShows: "Najbliższe koncerty", heroBtnListen: "Posłuchaj",
       musicEyebrow: "Muzyka", musicTitle: "Posłuchaj",
       musicIntro: "Nagrania, sesje i fragmenty koncertów — na YouTube i Spotify.",
       ytLink: "Obejrzyj na YouTube ↗", spLink: "Otwórz w Spotify ↗",
@@ -583,8 +487,8 @@
     en: {
       navMusic: "Music", navShows: "Shows", navAbout: "About", navBooking: "Booking", ctaBooking: "Booking",
       heroEyebrow: "Musician · Producer · Improviser",
-      heroLede: "Every show is its own event — shaped by the venue, the audience and the moment.",
-      heroBtnShows: "Shows", heroBtnListen: "Listen",
+      heroLede: "Musician based in Tricity, Poland. Shows, collaborations, recording sessions.",
+      heroBtnShows: "Upcoming shows", heroBtnListen: "Listen",
       musicEyebrow: "Music", musicTitle: "Listen",
       musicIntro: "Recordings, sessions and live moments — on YouTube and Spotify.",
       ytLink: "Watch on YouTube ↗", spLink: "Open on Spotify ↗",
