@@ -1,0 +1,661 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stefan Biedronka — Muzyka</title>
+<meta name="description" content="Stefan Biedronka — muzyk, producent, improwizator z Trójmiasta. Koncerty, muzyka na żywo, booking.">
+<meta property="og:title" content="Stefan Biedronka — Muzyka">
+<meta property="og:description" content="Muzyk · Producent · Improwizator. Koncerty, kolaboracje, booking.">
+<meta property="og:image" content="images/bio.webp">
+<meta name="theme-color" content="#0B0A0A">
+<link rel="icon" href="images/logo.png">
+<link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Anton&family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;1,9..144,300;1,9..144,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink: #0B0A0A;
+    --ink-2: #131111;
+    --ink-3: #1C1919;
+    --red: #E2131F;
+    --red-deep: #9E0C15;
+    --paper: #F3EEE6;
+    --muted: #A39C97;
+    --line: rgba(243, 238, 230, 0.12);
+    --display: "Anton", "Impact", sans-serif;
+    --serif: "Fraunces", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    font-family: var(--sans);
+    color: var(--paper);
+    background: var(--ink);
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+  }
+  /* film grain */
+  body::after {
+    content: "";
+    position: fixed; inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    opacity: .06;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  a { color: inherit; }
+  img { max-width: 100%; display: block; }
+  ::selection { background: var(--red); color: var(--paper); }
+
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 0 28px; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    color: var(--red);
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    font-size: .72rem;
+  }
+  .eyebrow::before {
+    content: ""; width: 9px; height: 9px; border-radius: 50%;
+    background: var(--red);
+  }
+  h2 {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: .95;
+    letter-spacing: .01em;
+    margin-top: 14px;
+  }
+  .btn {
+    display: inline-flex; align-items: center; gap: 10px;
+    padding: 16px 30px;
+    border-radius: 999px;
+    font-weight: 600;
+    text-decoration: none;
+    font-size: .9rem;
+    letter-spacing: .02em;
+    transition: transform .2s ease, background .2s ease, color .2s ease, border-color .2s ease;
+    cursor: pointer;
+  }
+  .btn-red { background: var(--red); color: var(--paper); }
+  .btn-red:hover { background: var(--red-deep); transform: translateY(-2px); }
+  .btn-ghost { border: 1px solid rgba(243,238,230,.35); color: var(--paper); }
+  .btn-ghost:hover { border-color: var(--paper); background: var(--paper); color: var(--ink); }
+  .btn .arrow { transition: transform .2s ease; }
+  .btn:hover .arrow { transform: translateX(4px); }
+
+  /* ---------- header ---------- */
+  header {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 50;
+    transition: background .3s ease, border-color .3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  header.scrolled {
+    background: rgba(11,10,10,.82);
+    backdrop-filter: blur(14px) saturate(150%);
+    -webkit-backdrop-filter: blur(14px) saturate(150%);
+    border-color: var(--line);
+  }
+  .nav { display: flex; align-items: center; justify-content: space-between; height: 72px; }
+  .brand {
+    display: inline-flex; align-items: center; gap: 12px;
+    text-decoration: none;
+    font-family: var(--display);
+    font-size: 1.25rem;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+  .brand img { width: 30px; height: 30px; transition: transform .6s cubic-bezier(.3,1.6,.5,1); }
+  .brand:hover img { transform: rotate(360deg); }
+  .nav-links { display: flex; gap: 34px; list-style: none; }
+  .nav-links a {
+    text-decoration: none; font-size: .86rem; font-weight: 500;
+    color: rgba(243,238,230,.75);
+    position: relative; padding: 4px 0;
+  }
+  .nav-links a::after {
+    content: ""; position: absolute; left: 0; bottom: -2px; height: 2px; width: 0;
+    background: var(--red); transition: width .25s ease;
+  }
+  .nav-links a:hover { color: var(--paper); }
+  .nav-links a:hover::after { width: 100%; }
+  .nav-right { display: flex; align-items: center; gap: 14px; }
+  .lang { display: flex; border: 1px solid var(--line); border-radius: 999px; padding: 3px; }
+  .lang button {
+    background: none; border: 0; color: var(--muted);
+    font: 600 .72rem var(--sans); letter-spacing: .1em;
+    padding: 6px 11px; border-radius: 999px; cursor: pointer;
+  }
+  .lang button.active { background: var(--paper); color: var(--ink); }
+
+  /* ---------- hero ---------- */
+  .hero {
+    position: relative;
+    min-height: 100vh; min-height: 100svh;
+    display: grid;
+    grid-template-columns: 1.05fr .95fr;
+    align-items: stretch;
+    overflow: hidden;
+  }
+  .hero-text {
+    position: relative; z-index: 2;
+    display: flex; flex-direction: column; justify-content: center;
+    padding: 120px 0 80px max(28px, calc((100vw - 1200px) / 2 + 28px));
+  }
+  .hero h1 {
+    font-family: var(--display);
+    font-weight: 400;
+    text-transform: uppercase;
+    font-size: clamp(4.2rem, 11vw, 10.5rem);
+    line-height: .86;
+    letter-spacing: -.005em;
+    margin: 22px 0 28px;
+  }
+  .hero h1 .l2 { display: block; color: transparent; -webkit-text-stroke: 1.5px var(--paper); }
+  .hero h1 .dot { color: var(--red); -webkit-text-stroke: 0; }
+  .hero-lede {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+    color: rgba(243,238,230,.78);
+    max-width: 30ch;
+    margin-bottom: 38px;
+  }
+  .hero-actions { display: flex; flex-wrap: wrap; gap: 14px; }
+  .hero-photo { position: relative; }
+  .hero-photo img {
+    position: absolute; inset: 0;
+    width: 100%; height: 100%;
+    object-fit: cover; object-position: 50% 30%;
+    filter: contrast(1.05) saturate(.95);
+  }
+  .hero-photo::before {
+    content: ""; position: absolute; inset: 0; z-index: 1;
+    background:
+      linear-gradient(90deg, var(--ink) 0%, rgba(11,10,10,.6) 18%, rgba(11,10,10,0) 45%),
+      linear-gradient(0deg, var(--ink) 0%, rgba(11,10,10,0) 25%);
+  }
+  .hero-badge {
+    position: absolute; z-index: 3;
+    right: 6%; bottom: 10%;
+    width: 132px; height: 132px;
+  }
+  .hero-badge img.bug {
+    position: absolute; inset: 30px; width: 72px; height: 72px;
+  }
+  .hero-badge svg { position: absolute; inset: 0; animation: spin 22s linear infinite; }
+  .hero-badge text { fill: var(--paper); font: 600 10.5px var(--sans); letter-spacing: 3.2px; text-transform: uppercase; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .scroll-cue {
+    position: absolute; left: 50%; bottom: 26px; z-index: 3;
+    width: 1px; height: 54px; background: var(--line); overflow: hidden;
+  }
+  .scroll-cue::after {
+    content: ""; position: absolute; left: 0; top: -50%; width: 1px; height: 50%;
+    background: var(--red); animation: drip 2s ease-in-out infinite;
+  }
+  @keyframes drip { to { top: 100%; } }
+
+  /* ---------- marquee ---------- */
+  .marquee {
+    background: var(--red);
+    color: var(--ink);
+    overflow: hidden;
+    white-space: nowrap;
+    padding: 16px 0;
+    border-block: 1px solid var(--red-deep);
+  }
+  .marquee-track { display: inline-flex; animation: marquee 30s linear infinite; }
+  .marquee span {
+    font-family: var(--display);
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    padding: 0 22px;
+    display: inline-flex; align-items: center; gap: 44px;
+  }
+  .marquee span::after { content: ""; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); }
+  @keyframes marquee { to { transform: translateX(-50%); } }
+
+  section { padding: 130px 0; position: relative; }
+  .head { display: flex; justify-content: space-between; align-items: flex-end; gap: 30px; flex-wrap: wrap; margin-bottom: 60px; }
+  .head p { color: var(--muted); max-width: 40ch; }
+
+  /* ---------- music ---------- */
+  .music-grid { display: grid; grid-template-columns: 1.45fr 1fr; gap: 24px; }
+  .card {
+    background: var(--ink-2);
+    border: 1px solid var(--line);
+    border-radius: 18px;
+    overflow: hidden;
+    display: flex; flex-direction: column;
+  }
+  .card iframe { border: 0; width: 100%; display: block; }
+  .card .yt { aspect-ratio: 16/9; }
+  .card .sp { height: 100%; min-height: 352px; flex: 1; }
+  .card-foot {
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 16px 20px; border-top: 1px solid var(--line);
+    font-size: .85rem;
+  }
+  .card-foot span { color: var(--muted); }
+  .card-foot a { text-decoration: none; font-weight: 600; }
+  .card-foot a:hover { color: var(--red); }
+
+  /* ---------- shows ---------- */
+  #koncerty { background: var(--ink-2); border-block: 1px solid var(--line); }
+  .shows { border-top: 1px solid var(--line); }
+  .show {
+    display: grid;
+    grid-template-columns: 140px 1fr auto;
+    align-items: center;
+    gap: 30px;
+    padding: 34px 0;
+    border-bottom: 1px solid var(--line);
+    transition: padding .25s ease;
+  }
+  .show:hover { padding-left: 14px; }
+  .show-date { font-family: var(--display); line-height: .9; }
+  .show-date .d { font-size: 4rem; display: block; }
+  .show-date .m { font-size: 1rem; letter-spacing: .2em; color: var(--red); }
+  .show h3 { font-family: var(--serif); font-weight: 400; font-size: clamp(1.4rem, 2.6vw, 2rem); line-height: 1.15; }
+  .show p { color: var(--muted); margin-top: 4px; display: flex; align-items: center; gap: 8px; }
+  .tag {
+    font-size: .65rem; font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+    border: 1px solid var(--line); border-radius: 999px; padding: 3px 9px; color: var(--muted);
+  }
+  .show.past .show-date .d, .show.past h3 { opacity: .55; }
+  .shows-note {
+    margin-top: 44px;
+    display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between;
+    padding: 28px 32px;
+    border-radius: 18px;
+    background: linear-gradient(120deg, rgba(226,19,31,.16), rgba(226,19,31,.02));
+    border: 1px solid rgba(226,19,31,.35);
+  }
+  .shows-note p { font-family: var(--serif); font-size: 1.25rem; font-style: italic; font-weight: 300; }
+
+  /* ---------- bio ---------- */
+  .bio { display: grid; grid-template-columns: .9fr 1.1fr; gap: 80px; align-items: center; }
+  .bio-photo { position: relative; }
+  .bio-photo img { border-radius: 18px; width: 100%; aspect-ratio: 4/5; object-fit: cover; }
+  .bio-photo::before {
+    content: ""; position: absolute; inset: 18px -18px -18px 18px;
+    border: 1px solid var(--red); border-radius: 18px; z-index: -1;
+  }
+  .bio-photo .dots { position: absolute; top: -26px; right: -26px; width: 92px; }
+  .bio-text h2 { margin-bottom: 34px; }
+  .bio-text p { color: rgba(243,238,230,.8); font-size: 1.06rem; margin-bottom: 20px; max-width: 58ch; }
+  .bio-text p:first-of-type {
+    font-family: var(--serif); font-weight: 300; font-size: clamp(1.35rem, 2.2vw, 1.7rem);
+    line-height: 1.4; color: var(--paper);
+  }
+  .facts { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 30px; }
+  .facts span { border: 1px solid var(--line); border-radius: 999px; padding: 8px 16px; font-size: .82rem; color: rgba(243,238,230,.85); }
+
+  /* ---------- booking ---------- */
+  #kontakt { padding-bottom: 90px; }
+  .booking {
+    position: relative; overflow: hidden;
+    background: var(--red);
+    color: var(--ink);
+    border-radius: 28px;
+    padding: clamp(48px, 8vw, 100px);
+  }
+  .booking .eyebrow { color: var(--ink); }
+  .booking .eyebrow::before { background: var(--ink); }
+  .booking h2 { font-size: clamp(3rem, 8.5vw, 7rem); max-width: 10ch; }
+  .booking > p { font-size: 1.15rem; margin: 22px 0 40px; max-width: 42ch; font-weight: 500; }
+  .booking .btn-red { background: var(--ink); }
+  .booking .btn-red:hover { background: #000; }
+  .booking .btn-ghost { border-color: rgba(11,10,10,.4); color: var(--ink); }
+  .booking .btn-ghost:hover { background: var(--ink); color: var(--paper); border-color: var(--ink); }
+  .contact-lines { margin-top: 44px; display: flex; flex-wrap: wrap; gap: 8px 34px; font-weight: 600; }
+  .contact-lines a { text-decoration: none; border-bottom: 2px solid rgba(11,10,10,.25); }
+  .contact-lines a:hover { border-color: var(--ink); }
+  .booking-bug {
+    position: absolute; right: -90px; bottom: -90px;
+    width: 380px; opacity: .14;
+    filter: grayscale(1) brightness(0);
+    transform: rotate(-18deg);
+  }
+  .actions { display: flex; flex-wrap: wrap; gap: 14px; position: relative; }
+
+  /* ---------- footer ---------- */
+  footer { padding: 50px 0 60px; }
+  .foot { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 24px; }
+  .socials { display: flex; gap: 10px; }
+  .socials a {
+    width: 46px; height: 46px; border-radius: 50%;
+    border: 1px solid var(--line);
+    display: grid; place-items: center;
+    transition: background .2s ease, border-color .2s ease, transform .2s ease;
+  }
+  .socials a:hover { background: var(--red); border-color: var(--red); transform: translateY(-3px); }
+  .socials svg { width: 19px; height: 19px; }
+  .foot small { color: var(--muted); font-size: .82rem; }
+
+  /* reveal */
+  .reveal { opacity: 0; transform: translateY(28px); transition: opacity .9s ease, transform .9s cubic-bezier(.2,.7,.2,1); }
+  .reveal.in { opacity: 1; transform: none; }
+
+  @media (max-width: 960px) {
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; }
+    .hero-photo { position: absolute; inset: 0; }
+    .hero-photo img { object-position: 62% 25%; opacity: .55; }
+    .hero-photo::before { background: linear-gradient(0deg, var(--ink) 8%, rgba(11,10,10,.35) 60%, rgba(11,10,10,.7) 100%); }
+    .hero-text { justify-content: flex-end; padding: 120px 28px 100px; }
+    .hero-badge { width: 104px; height: 104px; right: 22px; top: 96px; bottom: auto; }
+    .hero-badge img.bug { inset: 24px; width: 56px; height: 56px; }
+    .hero-badge svg { transform-origin: center; }
+    .music-grid, .bio { grid-template-columns: 1fr; }
+    .bio { gap: 60px; }
+    .bio-photo { max-width: 460px; }
+    section { padding: 90px 0; }
+  }
+  @media (max-width: 620px) {
+    .show { grid-template-columns: 78px 1fr; gap: 18px; }
+    .show-date .d { font-size: 2.8rem; }
+    .show .btn { grid-column: 2; justify-self: start; padding: 11px 20px; }
+    .nav-right .btn { display: none; }
+    .card-foot span { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<header id="hdr">
+  <nav class="wrap nav">
+    <a href="#top" class="brand"><img src="images/logo.png" alt="">Biedronka</a>
+    <ul class="nav-links">
+      <li><a href="#muzyka" data-i18n="navMusic">Muzyka</a></li>
+      <li><a href="#koncerty" data-i18n="navShows">Koncerty</a></li>
+      <li><a href="#o-mnie" data-i18n="navAbout">O mnie</a></li>
+      <li><a href="#kontakt" data-i18n="navBooking">Booking</a></li>
+    </ul>
+    <div class="nav-right">
+      <a href="#kontakt" class="btn btn-red" style="padding:10px 20px" data-i18n="ctaBooking">Booking</a>
+      <div class="lang" role="group" aria-label="Język / Language">
+        <button type="button" data-lang="pl">PL</button>
+        <button type="button" data-lang="en">EN</button>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<main id="top">
+
+  <section class="hero" style="padding:0">
+    <div class="hero-text">
+      <div class="eyebrow" data-i18n="heroEyebrow">Muzyk · Producent · Improwizator</div>
+      <h1>Stefan<span class="l2">Biedronka<span class="dot">.</span></span></h1>
+      <p class="hero-lede" data-i18n="heroLede">Każdy koncert to osobne wydarzenie — dopasowane do miejsca, publiczności i chwili.</p>
+      <div class="hero-actions">
+        <a href="#muzyka" class="btn btn-red"><span data-i18n="heroBtnListen">Posłuchaj</span> <span class="arrow">→</span></a>
+        <a href="#koncerty" class="btn btn-ghost" data-i18n="heroBtnShows">Koncerty</a>
+      </div>
+    </div>
+    <div class="hero-photo">
+      <img src="images/bio.webp" alt="Stefan Biedronka na scenie" data-i18n="bioPhotoAlt">
+    </div>
+    <div class="hero-badge" aria-hidden="true">
+      <svg viewBox="0 0 132 132">
+        <defs><path id="circ" d="M66,66 m-52,0 a52,52 0 1,1 104,0 a52,52 0 1,1 -104,0"/></defs>
+        <text><textPath href="#circ">Trójmiasto · Live · Improv · Booking ·</textPath></text>
+      </svg>
+      <img class="bug" src="images/logo.png" alt="">
+    </div>
+    <div class="scroll-cue" aria-hidden="true"></div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Improwizacja</span><span>Koncerty</span><span>Kolaboracje</span><span>Trójmiasto</span><span>Sesje nagraniowe</span><span>Projekty specjalne</span>
+      <span>Improwizacja</span><span>Koncerty</span><span>Kolaboracje</span><span>Trójmiasto</span><span>Sesje nagraniowe</span><span>Projekty specjalne</span>
+    </div>
+  </div>
+
+  <!-- MUZYKA -->
+  <section id="muzyka">
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <div class="eyebrow" data-i18n="musicEyebrow">Muzyka</div>
+          <h2 data-i18n="musicTitle">Posłuchaj</h2>
+        </div>
+        <p data-i18n="musicIntro">Nagrania, sesje i fragmenty koncertów — na YouTube i Spotify.</p>
+      </div>
+      <div class="music-grid reveal">
+        <div class="card">
+          <iframe class="yt" src="https://www.youtube-nocookie.com/embed/psEp4e_iH0E" title="YouTube — Stefan Biedronka" loading="lazy" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+          <div class="card-foot"><span>YouTube</span><a href="https://www.youtube.com/watch?v=psEp4e_iH0E" target="_blank" rel="noopener" data-i18n="ytLink">Obejrzyj na YouTube ↗</a></div>
+        </div>
+        <div class="card">
+          <iframe class="sp" src="https://open.spotify.com/embed/artist/2iAOQG8xOxlKNrqm28HZjV?utm_source=generator&theme=0" title="Spotify — Stefan Biedronka" loading="lazy" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+          <div class="card-foot"><span>Spotify</span><a href="https://open.spotify.com/artist/2iAOQG8xOxlKNrqm28HZjV" target="_blank" rel="noopener" data-i18n="spLink">Otwórz w Spotify ↗</a></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- KONCERTY -->
+  <section id="koncerty">
+    <div class="wrap">
+      <div class="head reveal">
+        <div>
+          <div class="eyebrow" data-i18n="showsEyebrow">Na żywo</div>
+          <h2 data-i18n="showsTitle">Koncerty</h2>
+        </div>
+        <p data-i18n="showsIntro">Najbliższe daty i miejsca — sprawdź, gdzie usłyszysz mnie na żywo.</p>
+      </div>
+      <!-- Koncerty: data w atrybucie data-date (RRRR-MM-DD); po dacie wiersz sam oznacza się jako „minione” -->
+      <div class="shows reveal" id="shows">
+        <div class="show" data-date="2026-09-06">
+          <div class="show-date"><span class="d">06</span><span class="m" data-i18n="sep">WRZ</span></div>
+          <div>
+            <h3>Gdynia Improvisers Orchestra</h3>
+            <p>Kamienna Góra, Gdynia</p>
+          </div>
+          <a href="https://fb.me/e/7n2xa7lnr" target="_blank" rel="noopener" class="btn btn-ghost"><span data-i18n="showDetails">Szczegóły</span> <span class="arrow">→</span></a>
+        </div>
+        <div class="show" data-date="2026-09-25">
+          <div class="show-date"><span class="d">25</span><span class="m" data-i18n="sep">WRZ</span></div>
+          <div>
+            <h3>myślografia.jpg</h3>
+            <p>Teatr BOTO, Sopot</p>
+          </div>
+          <a href="https://fb.me/e/8kHaKyiK9" target="_blank" rel="noopener" class="btn btn-ghost"><span data-i18n="showDetails">Szczegóły</span> <span class="arrow">→</span></a>
+        </div>
+      </div>
+      <div class="shows-note reveal">
+        <p data-i18n="showsEmpty">Brak dogodnego terminu? Napisz — chętnie zagram na Twoim wydarzeniu.</p>
+        <a href="#kontakt" class="btn btn-red"><span data-i18n="ctaBooking">Booking</span> <span class="arrow">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <!-- O MNIE -->
+  <section id="o-mnie">
+    <div class="wrap bio">
+      <div class="bio-photo reveal">
+        <img src="images/bio.webp" alt="Stefan Biedronka na scenie" data-i18n="bioPhotoAlt" loading="lazy">
+        <img class="dots" src="images/logo.png" alt="">
+      </div>
+      <div class="bio-text reveal">
+        <div class="eyebrow" data-i18n="aboutEyebrow">O mnie</div>
+        <h2 data-i18n="aboutTitle">Bio</h2>
+        <p data-i18n="bio1" data-i18n-html>Nazywam się Stefan Biedronka. Jestem muzykiem, na co dzień&nbsp;koncertującym w&nbsp;Trójmieście i&nbsp;poza nim.</p>
+        <p data-i18n="bio1b" data-i18n-html>Zawodowo jestem też socjologiem, więc&nbsp;muzykę traktuję zarówno jako praktykę, jak i&nbsp;przedmiot własnych zainteresowań&nbsp;badawczych.</p>
+        <p data-i18n="bio2" data-i18n-html>W&nbsp;moim graniu spory udział ma improwizacja, choć nie ograniczam się do jednego stylu ani jednej sceny. Każdy koncert traktuję jako osobne wydarzenie, dopasowane do miejsca, publiczności i&nbsp;chwili.</p>
+        <p data-i18n="bio3" data-i18n-html>Jestem otwarty na koncerty klubowe, kolaboracje, wydarzenia kameralne i&nbsp;projekty specjalne. Napisz, jeśli szukasz muzyka na swoje&nbsp;wydarzenie.</p>
+        <div class="facts">
+          <span data-i18n="f1">Trójmiasto</span>
+          <span data-i18n="f2">Improwizacja</span>
+          <span data-i18n="f3">Muzyk i socjolog</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="kontakt">
+    <div class="wrap">
+      <div class="booking reveal">
+        <img class="booking-bug" src="images/logo.png" alt="">
+        <div class="eyebrow" data-i18n="bookingEyebrow">Booking</div>
+        <h2 data-i18n="bookingTitle">Zorganizujmy koncert</h2>
+        <p data-i18n="bookingText">Rezerwacje koncertów, kolaboracje, sesje nagraniowe.</p>
+        <div class="actions">
+          <a href="mailto:contact@stefanbiedronka.art" class="btn btn-red"><span data-i18n="bookingEmail">Napisz e-mail</span> <span class="arrow">→</span></a>
+          <a href="tel:+48730392945" class="btn btn-ghost" data-i18n="bookingCall">Zadzwoń</a>
+        </div>
+        <div class="contact-lines">
+          <a href="mailto:contact@stefanbiedronka.art">contact@stefanbiedronka.art</a>
+          <a href="tel:+48730392945">+48 730 392 945</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a href="#top" class="brand"><img src="images/logo.png" alt="">Stefan Biedronka</a>
+    <div class="socials">
+      <a href="https://www.facebook.com/S.Biedronka/" target="_blank" rel="noopener" aria-label="Facebook">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M22 12.06C22 6.5 17.52 2 12 2S2 6.5 2 12.06c0 5 3.66 9.15 8.44 9.94v-7.03H7.9v-2.9h2.54V9.85c0-2.51 1.49-3.9 3.77-3.9 1.09 0 2.24.2 2.24.2v2.46h-1.26c-1.24 0-1.63.77-1.63 1.56v1.88h2.78l-.45 2.9h-2.33V22c4.78-.79 8.44-4.94 8.44-9.94Z"/></svg>
+      </a>
+      <a href="https://www.instagram.com/stefan.biedronka/" target="_blank" rel="noopener" aria-label="Instagram">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4.2"/><circle cx="17.4" cy="6.6" r="1.1" fill="currentColor" stroke="none"/></svg>
+      </a>
+      <a href="https://open.spotify.com/artist/2iAOQG8xOxlKNrqm28HZjV" target="_blank" rel="noopener" aria-label="Spotify">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="12" cy="12" r="9.2" stroke-width="1.8"/><path d="M6.8 9.4c3.4-1 7.4-.7 10 .9" stroke-width="1.6" stroke-linecap="round"/><path d="M7.2 12.6c2.8-.8 6.2-.6 8.4.8" stroke-width="1.5" stroke-linecap="round"/><path d="M7.7 15.6c2.3-.6 5-.5 6.8.7" stroke-width="1.3" stroke-linecap="round"/></svg>
+      </a>
+      <a href="https://www.youtube.com/@Stefan.Biedronka" target="_blank" rel="noopener" aria-label="YouTube">
+        <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M21.6 7.2a2.5 2.5 0 0 0-1.8-1.8C18.2 5 12 5 12 5s-6.2 0-7.8.4a2.5 2.5 0 0 0-1.8 1.8C2 8.8 2 12 2 12s0 3.2.4 4.8a2.5 2.5 0 0 0 1.8 1.8c1.6.4 7.8.4 7.8.4s6.2 0 7.8-.4a2.5 2.5 0 0 0 1.8-1.8c.4-1.6.4-4.8.4-4.8s0-3.2-.4-4.8ZM10 15V9l5.2 3L10 15Z"/></svg>
+      </a>
+    </div>
+    <small>© <span id="year">2026</span> Stefan Biedronka</small>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var T = {
+    pl: {
+      navMusic: "Muzyka", navShows: "Koncerty", navAbout: "O mnie", navBooking: "Booking", ctaBooking: "Booking",
+      heroEyebrow: "Muzyk · Producent · Improwizator",
+      heroLede: "Każdy koncert to osobne wydarzenie — dopasowane do miejsca, publiczności i chwili.",
+      heroBtnShows: "Koncerty", heroBtnListen: "Posłuchaj",
+      musicEyebrow: "Muzyka", musicTitle: "Posłuchaj",
+      musicIntro: "Nagrania, sesje i fragmenty koncertów — na YouTube i Spotify.",
+      ytLink: "Obejrzyj na YouTube ↗", spLink: "Otwórz w Spotify ↗",
+      showsEyebrow: "Na żywo", showsTitle: "Koncerty",
+      showsIntro: "Najbliższe daty i miejsca — sprawdź, gdzie usłyszysz mnie na żywo.",
+      sep: "WRZ", showDetails: "Szczegóły", past: "Minione",
+      showsEmpty: "Brak dogodnego terminu? Napisz — chętnie zagram na Twoim wydarzeniu.",
+      aboutEyebrow: "O mnie", aboutTitle: "Bio", bioPhotoAlt: "Stefan Biedronka na scenie",
+      bio1: "Nazywam się Stefan Biedronka. Jestem muzykiem, na co dzień&nbsp;koncertującym w&nbsp;Trójmieście i&nbsp;poza nim.",
+      bio1b: "Zawodowo jestem też socjologiem, więc&nbsp;muzykę traktuję zarówno jako praktykę, jak i&nbsp;przedmiot własnych zainteresowań&nbsp;badawczych.",
+      bio2: "W&nbsp;moim graniu spory udział ma improwizacja, choć nie ograniczam się do jednego stylu ani jednej sceny. Każdy koncert traktuję jako osobne wydarzenie, dopasowane do miejsca, publiczności i&nbsp;chwili.",
+      bio3: "Jestem otwarty na koncerty klubowe, kolaboracje, wydarzenia kameralne i&nbsp;projekty specjalne. Napisz, jeśli szukasz muzyka na swoje&nbsp;wydarzenie.",
+      f1: "Trójmiasto", f2: "Improwizacja", f3: "Muzyk i socjolog",
+      bookingEyebrow: "Booking", bookingTitle: "Zorganizujmy koncert",
+      bookingText: "Rezerwacje koncertów, kolaboracje, sesje nagraniowe.",
+      bookingEmail: "Napisz e-mail", bookingCall: "Zadzwoń",
+      pageTitle: "Stefan Biedronka — Muzyka"
+    },
+    en: {
+      navMusic: "Music", navShows: "Shows", navAbout: "About", navBooking: "Booking", ctaBooking: "Booking",
+      heroEyebrow: "Musician · Producer · Improviser",
+      heroLede: "Every show is its own event — shaped by the venue, the audience and the moment.",
+      heroBtnShows: "Shows", heroBtnListen: "Listen",
+      musicEyebrow: "Music", musicTitle: "Listen",
+      musicIntro: "Recordings, sessions and live moments — on YouTube and Spotify.",
+      ytLink: "Watch on YouTube ↗", spLink: "Open on Spotify ↗",
+      showsEyebrow: "Live", showsTitle: "Shows",
+      showsIntro: "Upcoming dates and venues — see where you can catch me live.",
+      sep: "SEP", showDetails: "Details", past: "Past",
+      showsEmpty: "Don't see a date that works? Get in touch — I'd love to play at your event.",
+      aboutEyebrow: "About", aboutTitle: "Bio", bioPhotoAlt: "Stefan Biedronka on stage",
+      bio1: "My name is Stefan Biedronka. I'm a musician, regularly performing across the Tricity area and&nbsp;beyond.",
+      bio1b: "I'm also a sociologist by profession, so I treat music both as a practice and as a subject of my&nbsp;own research.",
+      bio2: "Improvisation plays a big part in what I do, though I don't limit myself to one style or one stage. I treat every show as its own event, shaped by the venue, the audience, and&nbsp;the moment.",
+      bio3: "I'm open to club shows, collaborations, intimate events, and special projects. Get in touch if you're looking for a musician for your&nbsp;event.",
+      f1: "Tricity, Poland", f2: "Improvisation", f3: "Musician & sociologist",
+      bookingEyebrow: "Booking", bookingTitle: "Let's set up a show",
+      bookingText: "Concert bookings, collaborations, recording sessions — based in Tricity, Poland.",
+      bookingEmail: "Email me", bookingCall: "Call",
+      pageTitle: "Stefan Biedronka — Music"
+    }
+  };
+
+  // mark past shows
+  var today = new Date(); today.setHours(0, 0, 0, 0);
+  document.querySelectorAll('.show[data-date]').forEach(function (row) {
+    if (new Date(row.dataset.date + 'T23:59:59') < today) {
+      row.classList.add('past');
+      var p = row.querySelector('p');
+      var tag = document.createElement('span');
+      tag.className = 'tag'; tag.setAttribute('data-i18n', 'past');
+      p.appendChild(tag);
+    }
+  });
+
+  function apply(lang) {
+    var d = T[lang] || T.pl;
+    document.documentElement.lang = lang;
+    document.title = d.pageTitle;
+    document.querySelectorAll('[data-i18n]').forEach(function (el) {
+      var v = d[el.getAttribute('data-i18n')];
+      if (v === undefined) return;
+      if (el.tagName === 'IMG') el.alt = v;
+      else if (el.hasAttribute('data-i18n-html')) el.innerHTML = v;
+      else el.textContent = v;
+    });
+    document.querySelectorAll('.lang button').forEach(function (b) {
+      b.classList.toggle('active', b.dataset.lang === lang);
+    });
+    try { localStorage.setItem('sb-lang', lang); } catch (e) {}
+  }
+  document.querySelectorAll('.lang button').forEach(function (b) {
+    b.addEventListener('click', function () { apply(b.dataset.lang); });
+  });
+  var saved = null;
+  try { saved = localStorage.getItem('sb-lang'); } catch (e) {}
+  if (!saved) saved = (navigator.language || 'pl').slice(0, 2) === 'pl' ? 'pl' : 'en';
+  apply(saved === 'en' ? 'en' : 'pl');
+
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  var hdr = document.getElementById('hdr');
+  function onScroll() { hdr.classList.toggle('scrolled', window.scrollY > 40); }
+  window.addEventListener('scroll', onScroll, { passive: true }); onScroll();
+
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (es) {
+      es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(function (el) { io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function (el) { el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>
